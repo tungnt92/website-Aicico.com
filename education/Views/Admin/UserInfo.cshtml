@@ -1,0 +1,36 @@
+﻿@model education.Models.user
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "User Information";
+}
+<div class="module">
+    <form class="form-horizontal row-fluid">
+        <div class="module-body">
+            <div class="control-group">
+                <label class="control-label" for="titleinput">Full Name</label>
+                <div class="controls">
+                    <p style="padding-top:5px">@Model.fullname</p>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="titleinput">Password</label>
+                <div class="controls">
+                    <p style="padding-top:5px">@Model.password</p>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="titleinput">Address</label>
+                <div class="controls">
+                    <p style="padding-top:5px">@Model.address</p>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="titleinput">Phone</label>
+                <div class="controls">
+                    <p style="padding-top:5px">@Model.phone</p>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

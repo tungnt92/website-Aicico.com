@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="educationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="categories">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="parent_id" Type="int" />
+    <Property Name="level" Type="int" />
+    <Property Name="path" Type="nvarchar" MaxLength="255" />
+    <Property Name="title" Type="nvarchar" MaxLength="255" />
+    <Property Name="note" Type="nvarchar" MaxLength="255" />
+    <Property Name="discription" Type="nvarchar" MaxLength="255" />
+    <Property Name="image" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="content">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="255" />
+    <Property Name="introtext" Type="nvarchar(max)" />
+    <Property Name="fulltext" Type="nvarchar(max)" />
+    <Property Name="state" Type="int" />
+    <Property Name="catid" Type="int" />
+    <Property Name="created" Type="datetime" />
+    <Property Name="create_by" Type="nvarchar" MaxLength="50" />
+    <Property Name="image" Type="nvarchar" MaxLength="255" />
+    <Property Name="ordering" Type="int" />
+    <Property Name="hit" Type="int" />
+    <Property Name="note" Type="nchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="mediagallery">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="filename" Type="nvarchar" MaxLength="255" />
+    <Property Name="caption" Type="nvarchar" MaxLength="1000" />
+    <Property Name="published" Type="int" />
+    <Property Name="ordering" Type="int" />
+  </EntityType>
+  <EntityType Name="menu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="255" />
+    <Property Name="note" Type="nvarchar" MaxLength="255" />
+    <Property Name="link" Type="nvarchar" MaxLength="255" />
+    <Property Name="parent_id" Type="int" />
+    <Property Name="level" Type="int" />
+    <Property Name="ordering" Type="int" />
+    <Property Name="home" Type="int" />
+    <Property Name="image" Type="nvarchar" MaxLength="255" />
+    <Property Name="published" Type="int" />
+  </EntityType>
+  <EntityType Name="roles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="255" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" />
+    <Property Name="fullname" Type="nvarchar" MaxLength="50" />
+    <Property Name="address" Type="nvarchar" MaxLength="50" />
+    <Property Name="phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="image" Type="nvarchar" MaxLength="255" />
+    <Property Name="level" Type="int" />
+  </EntityType>
+  <EntityType Name="usersinroles">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="roleid" Type="int" Nullable="false" />
+    <Property Name="userid" Type="int" Nullable="false" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_content_ToTable">
+    <End Role="categories" Type="Self.categories" Multiplicity="0..1" />
+    <End Role="content" Type="Self.content" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categories">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="content">
+        <PropertyRef Name="catid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_usersinroles_roles">
+    <End Role="roles" Type="Self.roles" Multiplicity="1" />
+    <End Role="usersinroles" Type="Self.usersinroles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="roles">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="usersinroles">
+        <PropertyRef Name="roleid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_usersinroles_users">
+    <End Role="users" Type="Self.users" Multiplicity="1" />
+    <End Role="usersinroles" Type="Self.usersinroles" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="usersinroles">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="educationModelStoreContainer">
+    <EntitySet Name="categories" EntityType="Self.categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="content" EntityType="Self.content" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="mediagallery" EntityType="Self.mediagallery" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="menu" EntityType="Self.menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="roles" EntityType="Self.roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="usersinroles" EntityType="Self.usersinroles" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_content_ToTable" Association="Self.FK_content_ToTable">
+      <End Role="categories" EntitySet="categories" />
+      <End Role="content" EntitySet="content" />
+    </AssociationSet>
+    <AssociationSet Name="FK_usersinroles_roles" Association="Self.FK_usersinroles_roles">
+      <End Role="roles" EntitySet="roles" />
+      <End Role="usersinroles" EntitySet="usersinroles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_usersinroles_users" Association="Self.FK_usersinroles_users">
+      <End Role="users" EntitySet="users" />
+      <End Role="usersinroles" EntitySet="usersinroles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

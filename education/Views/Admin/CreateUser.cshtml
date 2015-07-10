@@ -1,0 +1,65 @@
+﻿@model education.Models.user
+
+@{
+    ViewBag.Title = "Create User";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+<div class="module">
+    <div class="module-head">
+        <h3>User Manager</h3>
+    </div>
+    @using (Html.BeginForm("CreateUser", "Admin", FormMethod.Post, new { @class = "form-horizontal row-fluid" }))
+    {
+        <div class="module-body">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="control-group">
+                <label class="control-label" for="fullname">FullName</label>
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.fullname, new { @placeholder = "Type something here...", @class = "span8" })
+                    @Html.ValidationMessageFor(model => model.fullname, null, new { @style = "color:red" })
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="address">Address</label>
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.address, new { @placeholder = "Type something here...", @class = "span8" })
+                    @Html.ValidationMessageFor(model => model.address)
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="phone">Phone</label>
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.phone, new { @placeholder = "Type something here...", @class = "span8" })
+                    @Html.ValidationMessageFor(model => model.phone)
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="email">Email</label>
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.email, new { @placeholder = "Type something here...", @class = "span8" })
+                    @Html.ValidationMessageFor(model => model.email)
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="password">Password</label>
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.password, new { @placeholder = "Type something here...", @class = "span8" })
+                    @Html.ValidationMessageFor(model => model.password)
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <input type="submit" value="Save" class="btn btn-default" />
+
+                    <input type="button" value="Back" class="btn btn-default" onclick="window.location.href = '/Admin/UserManager'" />
+                </div>
+
+            </div>
+        </div>
+    }
+</div>
+

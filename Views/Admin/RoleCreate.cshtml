@@ -1,0 +1,8 @@
+﻿@model IEnumerable<education.Models.user>
+@{
+    ViewBag.Title = "RoleCreate";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@foreach(var item in Model)
+{ <p>@item.email@foreach (var item1 in item.roles)
+     { @item1.name}</p> }

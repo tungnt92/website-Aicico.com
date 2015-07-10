@@ -1,0 +1,34 @@
+﻿@model IEnumerable<education.Models.menu>
+@using education.Helper
+
+@{
+    string activeclass = "";
+    //string path = HttpContext.Current.Request.Path;
+    //string path = Html.MenuItem();
+    
+}
+<ul class="nav navbar-nav navbar-right">
+    @foreach (var item in Model)
+    {
+        <!--if (path == null && @item.id == 1)
+        {
+            activeclass = "active";
+        }
+        else
+        {
+            if (string.Equals(path ,@item.link,StringComparison.OrdinalIgnoreCase))
+            {
+                activeclass = "active";
+            }
+            else
+            {
+                activeclass = "";
+            }
+        }-->
+
+    <li class=@Html.MenuItem(item.link)>
+        <a href="/@item.link"><i class="fa @item.note"></i><br>@item.title</a>
+    </li>
+
+    }
+</ul>

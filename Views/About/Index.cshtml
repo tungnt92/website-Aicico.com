@@ -1,0 +1,24 @@
+﻿@model education.Models.content
+@{
+    ViewBag.Title = "About";
+}
+<div class="page-title-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 wow fadeIn">
+                <i class="fa fa-user"></i>
+                <h1>About Us /</h1>
+                <p>@Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.introtext))</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="about-us-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 about-us-text wow fadeInLeft">
+                @Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.fulltext))
+            </div>
+        </div>
+    </div>
+</div>

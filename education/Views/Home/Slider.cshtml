@@ -1,0 +1,12 @@
+﻿@model IEnumerable<education.Models.mediagallery>
+<ul class="slides">
+    @foreach (var item in Model)
+    {
+        <li data-thumb="/content/images/slider/@item.filename">
+            <img src="/content/images/slider/@item.filename">
+            <div class="flex-caption">
+                @item.caption
+            </div>
+        </li>
+    }
+</ul>

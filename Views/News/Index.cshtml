@@ -1,0 +1,47 @@
+﻿@model IEnumerable<education.Models.content>
+
+@{
+    ViewBag.Title = "Tư vấn du học";
+}
+
+       <!-- Page Title -->
+<div class="page-title-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 wow fadeIn">
+                <i class="fa fa-camera"></i>
+                <h1>News and Event /</h1>
+                <p>Here is the work we've done so far</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Portfolio -->
+<div class="portfolio-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 portfolio-filters wow fadeInLeft">
+                <a href="#" class="filter-all active">All</a> /
+                @{Html.RenderAction("TypeOfNews");}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 portfolio-masonry">
+                @foreach (var item in Model)
+                {
+
+                    <div class="portfolio-box @item.category.note">
+                        <div class="portfolio-box-container">
+                            <img src="@item.image" alt="" data-at2x="assets/img/portfolio/@item.image">
+                            <div class="portfolio-box-text">
+                                <a href="@Url.Action("Details", "News", new { id = item.id})"><h3>@item.title</h3></a>
+                                <p>@item.introtext</p>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>

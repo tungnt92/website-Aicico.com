@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="educationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="educationEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="categories" EntityType="educationModel.category" />
+    <EntitySet Name="contents" EntityType="educationModel.content" />
+    <EntitySet Name="mediagalleries" EntityType="educationModel.mediagallery" />
+    <EntitySet Name="menus" EntityType="educationModel.menu" />
+    <EntitySet Name="roles" EntityType="educationModel.role" />
+    <EntitySet Name="users" EntityType="educationModel.user" />
+    <EntitySet Name="usersinroles" EntityType="educationModel.usersinrole" />
+    <AssociationSet Name="FK_content_ToTable" Association="educationModel.FK_content_ToTable">
+      <End Role="category" EntitySet="categories" />
+      <End Role="content" EntitySet="contents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_usersinroles_roles" Association="educationModel.FK_usersinroles_roles">
+      <End Role="role" EntitySet="roles" />
+      <End Role="usersinrole" EntitySet="usersinroles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_usersinroles_users" Association="educationModel.FK_usersinroles_users">
+      <End Role="user" EntitySet="users" />
+      <End Role="usersinrole" EntitySet="usersinroles" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="parent_id" Type="Int32" />
+    <Property Name="level" Type="Int32" />
+    <Property Name="path" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="note" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="discription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="contents" Relationship="educationModel.FK_content_ToTable" FromRole="category" ToRole="content" />
+  </EntityType>
+  <EntityType Name="content">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="introtext" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="fulltext" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="state" Type="Int32" />
+    <Property Name="catid" Type="Int32" />
+    <Property Name="created" Type="DateTime" Precision="3" />
+    <Property Name="create_by" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ordering" Type="Int32" />
+    <Property Name="hit" Type="Int32" />
+    <Property Name="note" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="category" Relationship="educationModel.FK_content_ToTable" FromRole="content" ToRole="category" />
+  </EntityType>
+  <EntityType Name="mediagallery">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="filename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="caption" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="published" Type="Int32" />
+    <Property Name="ordering" Type="Int32" />
+  </EntityType>
+  <EntityType Name="menu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="note" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="link" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="parent_id" Type="Int32" />
+    <Property Name="level" Type="Int32" />
+    <Property Name="ordering" Type="Int32" />
+    <Property Name="home" Type="Int32" />
+    <Property Name="image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="published" Type="Int32" />
+  </EntityType>
+  <EntityType Name="role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="usersinroles" Relationship="educationModel.FK_usersinroles_roles" FromRole="role" ToRole="usersinrole" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="level" Type="Int32" />
+    <NavigationProperty Name="usersinrole" Relationship="educationModel.FK_usersinroles_users" FromRole="user" ToRole="usersinrole" />
+  </EntityType>
+  <EntityType Name="usersinrole">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="roleid" Type="Int32" Nullable="false" />
+    <Property Name="userid" Type="Int32" Nullable="false" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="role" Relationship="educationModel.FK_usersinroles_roles" FromRole="usersinrole" ToRole="role" />
+    <NavigationProperty Name="user" Relationship="educationModel.FK_usersinroles_users" FromRole="usersinrole" ToRole="user" />
+  </EntityType>
+  <Association Name="FK_content_ToTable">
+    <End Type="educationModel.category" Role="category" Multiplicity="0..1" />
+    <End Type="educationModel.content" Role="content" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="category">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="content">
+        <PropertyRef Name="catid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_usersinroles_roles">
+    <End Type="educationModel.role" Role="role" Multiplicity="1" />
+    <End Type="educationModel.usersinrole" Role="usersinrole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="usersinrole">
+        <PropertyRef Name="roleid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_usersinroles_users">
+    <End Type="educationModel.user" Role="user" Multiplicity="1" />
+    <End Type="educationModel.usersinrole" Role="usersinrole" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="usersinrole">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

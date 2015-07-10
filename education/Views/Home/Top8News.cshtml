@@ -1,0 +1,26 @@
+﻿@model IEnumerable<education.Models.content>
+@{
+    string updownchecker = "fadeInUp";
+}
+@foreach(var item in Model.Take(8))
+{
+    <div class="col-sm-3">
+        <div class="work wow @updownchecker">
+            <img src="@item.image" alt="@item.title" data-at2x="@item.image">
+            <a href="@Url.Action("Details", "News", new { id = item.id})"><h3>@item.title</h3></a>
+            <p>@item.introtext</p>
+            <div class="work-bottom">
+                <a class="big-link-2 view-work" href="@item.image"><i class="fa fa-search"></i></a>
+                <a class="big-link-2" href="@Url.Action("Details", "News", new { id = item.id})"><i class="fa fa-link"></i></a>
+            </div>
+        </div>
+	</div>
+    if (updownchecker == "fadeInUp")
+    {
+        updownchecker = "fadeInDown";
+    }
+    else
+    {
+        updownchecker = "fadeInUp";
+    }
+}

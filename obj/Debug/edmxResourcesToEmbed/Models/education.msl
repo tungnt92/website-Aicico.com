@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="educationModelStoreContainer" CdmEntityContainer="educationEntities">
+    <EntitySetMapping Name="categories">
+      <EntityTypeMapping TypeName="educationModel.category">
+        <MappingFragment StoreEntitySet="categories">
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="discription" ColumnName="discription" />
+          <ScalarProperty Name="note" ColumnName="note" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="path" ColumnName="path" />
+          <ScalarProperty Name="level" ColumnName="level" />
+          <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="contents">
+      <EntityTypeMapping TypeName="educationModel.content">
+        <MappingFragment StoreEntitySet="content">
+          <ScalarProperty Name="note" ColumnName="note" />
+          <ScalarProperty Name="hit" ColumnName="hit" />
+          <ScalarProperty Name="ordering" ColumnName="ordering" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="create_by" ColumnName="create_by" />
+          <ScalarProperty Name="created" ColumnName="created" />
+          <ScalarProperty Name="catid" ColumnName="catid" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="fulltext" ColumnName="fulltext" />
+          <ScalarProperty Name="introtext" ColumnName="introtext" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mediagalleries">
+      <EntityTypeMapping TypeName="educationModel.mediagallery">
+        <MappingFragment StoreEntitySet="mediagallery">
+          <ScalarProperty Name="ordering" ColumnName="ordering" />
+          <ScalarProperty Name="published" ColumnName="published" />
+          <ScalarProperty Name="caption" ColumnName="caption" />
+          <ScalarProperty Name="filename" ColumnName="filename" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="menus">
+      <EntityTypeMapping TypeName="educationModel.menu">
+        <MappingFragment StoreEntitySet="menu">
+          <ScalarProperty Name="published" ColumnName="published" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="home" ColumnName="home" />
+          <ScalarProperty Name="ordering" ColumnName="ordering" />
+          <ScalarProperty Name="level" ColumnName="level" />
+          <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+          <ScalarProperty Name="link" ColumnName="link" />
+          <ScalarProperty Name="note" ColumnName="note" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="roles">
+      <EntityTypeMapping TypeName="educationModel.role">
+        <MappingFragment StoreEntitySet="roles">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="educationModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="level" ColumnName="level" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="fullname" ColumnName="fullname" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usersinroles">
+      <EntityTypeMapping TypeName="educationModel.usersinrole">
+        <MappingFragment StoreEntitySet="usersinroles">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="roleid" ColumnName="roleid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

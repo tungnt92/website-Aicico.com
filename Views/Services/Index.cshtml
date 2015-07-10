@@ -1,0 +1,79 @@
+﻿@model IEnumerable<education.Models.content>
+
+@{
+    ViewBag.Title = "Tư vấn du học";
+    string updownchecker = "fadeInUp";
+}
+
+        <!-- Page Title -->
+<div class="page-title-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 wow fadeIn">
+                <i class="fa fa-tasks"></i>
+                <h1>Services /</h1>
+                <p>Here are the services we offer</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Services Full Width Text -->
+<div class="services-full-width-container">
+    <div class="container">
+        <div class="row">
+            @{Html.RenderAction("TopContent");}
+        </div>
+    </div>
+</div>
+<!-- Services -->
+<div class="services-container">
+    <div class="container">
+        <div class="row">
+            @foreach(var item in Model)
+            {
+                <div class="col-sm-3">
+                    <div class="service wow @updownchecker">
+                        <div class="service-icon"><i class="fa @item.image"></i></div>
+                        <h3>@item.title</h3>
+                        <p>@(Html.Raw(Server.HtmlDecode(@item.introtext)).ToString().Substring(0, 50)+"...")</p>
+                        <a class="big-link-1" href="services/details/@item.id">Read more</a>
+                    </div>
+                </div>
+                if (updownchecker == "fadeInUp")
+                {
+                    updownchecker = "fadeInDown";
+                }
+                else
+                {
+                    updownchecker = "fadeInUp";
+                }
+            }
+        </div>
+    </div>
+</div>
+<!-- Services Half Width Text -->
+<div class="services-half-width-container">
+    <div class="container">
+        <div class="row">
+            @{Html.RenderAction("LeftContent");}
+            @{Html.RenderAction("RightContent");}
+        </div>
+    </div>
+</div>
+<!-- Call To Action -->
+<div class="call-to-action-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 call-to-action-text wow fadeInLeftBig">
+                <p>
+                    Lorem ipsum <span class="violet">dolor sit amet</span>, consectetur adipisicing elit,
+                    sed do eiusmod tempor incididunt ut labore et ut wisi.
+                </p>
+                <div class="call-to-action-button">
+                    <a class="big-link-3" href="contact">Sign Up Now!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

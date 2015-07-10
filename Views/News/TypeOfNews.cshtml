@@ -1,0 +1,6 @@
+﻿@model IEnumerable<education.Models.category>
+
+@foreach(var item in Model)
+{
+    <a href="#" class="filter-@item.note">@item.title</a> <z>/</z>
+}

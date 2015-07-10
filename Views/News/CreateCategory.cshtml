@@ -1,0 +1,50 @@
+﻿@model education.Models.category
+
+@{
+    
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Create Category";
+}
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+<div class="module">
+    <div class="module-head">
+        <h3>Category Manager</h3>
+    </div>
+    @using (Html.BeginForm("CreateCategory", "News", FormMethod.Post, new { @class = "form-horizontal row-fluid" }))
+{
+    <div class="module-body">
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+
+        <div class="control-group">
+            <label class="control-label" for="title">Title</label>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.title, new { @placeholder = "Type something here...", @class = "span8"})
+                @Html.ValidationMessageFor(model => model.title, null, new { @style = "color:red" })
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="note">Note</label>
+            <div class="controls">
+                @Html.TextBoxFor(model => model.note, new { @placeholder = "Type something here...", @class = "span8"})
+                @Html.ValidationMessageFor(model => model.note)
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                <input type="submit" value="Create" class="btn btn-default" />
+
+                <input type="button" value="Back" class="btn btn-default" onclick="window.location.href = '/Admin/Category'" />
+            </div>
+
+        </div>
+    </div>
+}
+</div>
+
+
+    

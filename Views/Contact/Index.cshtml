@@ -1,0 +1,77 @@
+﻿@model education.Models.ContactEmail
+@{
+    ViewBag.Title = "Contact";
+}
+
+<script src="~/scripts/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<div class="page-title-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 wow fadeIn">
+                <i class="fa fa-envelope"></i>
+                <h1>Contact Us /</h1>
+                <p>Here is how you can contact us</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Us -->
+<div class="contact-us-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7 contact-form wow fadeInLeft">
+                <!--<p>
+                    Chọn chương trình đào tạo.
+                </p>
+                Html.DropDownList("SubjectName")-->
+                <section id="loginForm">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="contact-name">Name</label>
+                                @Html.EditorFor(model => model.Name)
+                                @Html.ValidationMessageFor(model => model.Name)
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-email">Email</label>
+                                @Html.TextBoxFor(model => model.Email, new { type="email",@placeholder="Enter your email"})
+                                @Html.ValidationMessageFor(model => model.Email)
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-address">Address</label>
+                                @Html.EditorFor(model => model.Address)
+                                @Html.ValidationMessageFor(model => model.Address)
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-subject">Subject</label>
+                                @Html.EditorFor(model => model.Subject)
+                                @Html.ValidationMessageFor(model => model.Subject)
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-message">Message</label>
+                                @Html.EditorFor(model => model.Message)
+                                @Html.ValidationMessageFor(model => model.Message)
+                            </div>
+                            <button type="submit" class="btn">Send</button>
+                        </fieldset>
+                    }
+                </section>
+            </div>
+            <div class="col-sm-5 contact-address wow fadeInUp">
+                <h3>We Are Here</h3>
+                <div class="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7836.849491133343!2d106.7867228993247!3d10.855263567028864!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0xe1eceda934207c2c!2sSaigon+Hi-Tech+Park+Training+Center!5e0!3m2!1svi!2s!4v1422793275776" width="458" height="300" frameborder="0" style="border:0"></iframe>
+                </div>
+                    <h3>Address</h3>
+                    <p>251 Mỹ Lộc Lộc An<br> Cần Giuộc, Long An</p>
+                    <p>Phone: (+84) 168 9979 457</p>
+                </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+﻿@model education.Models.content
+
+<div class="col-sm-12 wow fadeInLeftBig">
+    @Html.Raw(Server.HtmlDecode(Model.introtext))
+    <p>@Model.fulltext</p>
+</div>

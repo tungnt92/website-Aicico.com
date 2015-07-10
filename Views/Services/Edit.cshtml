@@ -1,0 +1,83 @@
+﻿@model education.Models.content
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Edit Service";
+}
+<style>
+    .controls textarea {
+        width: 80%;
+        height: 70px;
+    }
+</style>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+<script src="~/Scripts/ckfinder/ckfinder.js"></script>
+<script src="~/Scripts/ckeditor/ckeditor.js" type="text/javascript"></script>
+<script type="text/javascript">
+    function BrowseServer() {
+        var finder = new CKFinder();
+        finder.selectActionFunction = SetFileField;
+        finder.popup();
+    }
+    function SetFileField(fileUrl) {
+        document.getElementById('image').value = fileUrl;
+        document.getElementById('img').src = fileUrl;
+    }
+</script>
+<div class="module">
+    <div class="module-head">
+        <h3>Service Manager</h3>
+    </div>
+    @using (Html.BeginForm("Edit", "Services", FormMethod.Post, new { @class = "form-horizontal row-fluid" }))
+    {
+        <div class="module-body">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            @Html.HiddenFor(model => model.id)
+            <div class="control-group">
+                <label class="control-label" for="title">Title</label>
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.title, new { @placeholder = "Type something here...", @class = "span8" })
+                    @Html.ValidationMessageFor(model => model.title, null, new { @style = "color:red" })
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="imageinput">Image</label>
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.image, new { @readonly = "readonly", @Value = "/content/images/nopicture.png" })
+                    <input type="button" class="btn btn-default" value="Chọn Ảnh ..." onclick="BrowseServer();" id="imageinput" />
+                    @Html.ValidationMessageFor(model => model.image)
+                </div>
+                <div class="controls">
+                    <img src="~/content/images/nopicture.png" id="img" alt="" style="padding-top: 10px;width:190px;height:120px" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="introtext">IntroText</label>
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.introtext, new { placeholder = "Type something here...", @class = "span8" })
+                    @Html.ValidationMessageFor(model => model.note)
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="fulltext">FullText</label>
+                <div class="controls">
+                    @Html.TextAreaFor(model => model.fulltext, new { placeholder = "Type something here...", @class = "span8" })
+                    <script type="text/javascript">
+                    CKEDITOR.replace("fulltext");
+                    </script>
+                    @Html.ValidationMessageFor(model => model.note)
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <input type="submit" value="Save" class="btn btn-default" />
+
+                    <input type="button" value="Back" class="btn btn-default" onclick="window.location.href = '/admin/service'" />
+                </div>
+
+            </div>
+        </div>
+    }
+</div>

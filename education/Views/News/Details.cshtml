@@ -1,0 +1,33 @@
+﻿@model education.Models.content
+
+@{
+    ViewBag.Title = @Model.title;
+}
+
+       <!-- Page Title -->
+<div class="page-title-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 wow fadeIn">
+                <i class="fa fa-arrow-right"></i>
+                <h1>@Model.title /</h1>
+                <p>@Model.introtext</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- About Us Text -->
+<div class="about-us-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 about-us-text wow fadeInLeft">
+                <img src="@Model.image">
+                <br/>
+                <p>@Html.Raw(Server.HtmlDecode(Model.fulltext))</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@{Html.RenderAction("NewsRelated");}

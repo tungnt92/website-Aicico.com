@@ -1,0 +1,26 @@
+﻿@model education.Models.content
+@{
+    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="module">
+    <div class="module-head">
+        <h3>About Manager</h3>
+    </div>
+    <div class="module-body">
+        <div class="controls">
+            <button type="button" class="btn" onclick="location.href='@Url.Action("About_Edit", "Admin" )'" style="text-align:left">Edit</button>
+        </div><br />
+        <div class="page-title-container">
+            <div class="container">
+                <h1>About Us</h1> <p>@Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.introtext))</p>
+            </div>
+        </div>
+        <div class="about-us-container">
+            <div style="width:800px">
+                @Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.fulltext))
+            </div>
+        </div>
+        <br />
+    </div>
+</div>

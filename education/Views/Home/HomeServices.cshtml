@@ -1,0 +1,23 @@
+﻿@model IEnumerable<education.Models.content>
+@{
+    string updownchecker = "fadeInUp";
+}
+@foreach(var item in Model)
+{
+    <div class="col-sm-3">
+        <div class="service wow @updownchecker">
+            <div class="service-icon"><i class="fa @item.image"></i></div>
+            <h3>@item.title</h3>
+            <p>@item.introtext</p>
+            <a class="big-link-1" href="services">Read more</a>
+        </div>
+    </div>
+    if (updownchecker == "fadeInUp")
+    {
+        updownchecker = "fadeInDown";
+    }
+    else
+    {
+        updownchecker = "fadeInUp";
+    }
+}

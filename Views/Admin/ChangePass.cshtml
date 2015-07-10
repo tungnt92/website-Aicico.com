@@ -1,0 +1,55 @@
+﻿@model education.Models.user
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Change password";
+}
+<script>
+    $(document).ready(function () {
+        $('input[type="submit"]').click(function () {
+            if (document.getElementById("password").value != document.getElementById("retypepassword").value && document.getElementById("password").value != "" && document.getElementById("retypepassword").value!="")
+            {
+                document.getElementById("myspan").innerHTML = "Password not match!!!!";
+                document.getElementById("retypepassword").focus()
+                return false;
+            }
+        });
+    });
+</script>
+<div class="module" style="min-height:320px">
+    <div class="module-head">
+        <h3>News Manager</h3>
+    </div>
+    @using (Html.BeginForm())
+    {
+        <div class="module-body">
+        <h2>@ViewBag.state</h2>
+            @Html.HiddenFor(model => model.id)
+            @Html.HiddenFor(model => model.fullname)
+            @Html.HiddenFor(model => model.address)
+            @Html.HiddenFor(model => model.email)
+        <div class="control-group">
+            <span id="myspan" style="color:red"></span>
+        </div>
+        <div class="control-group">
+                <label class="control-label" for="password">New Password</label>
+                <div class="controls">
+                    @Html.TextBox("password","", new { @placeholder = "Enter new password here...", @class = "span8", @Value="", required = "true" })
+                </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="retypepassword">Retype New Password</label>
+            <div class="controls">
+                @Html.TextBox("retypepassword","", new { @placeholder = "Enter new password here...", @class = "span8", required="true" })
+                @Html.ValidationMessageFor(model => model.password)
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Change" class="btn btn-default" />
+                </div>
+        </div>
+      </div>
+    }
+</div>
